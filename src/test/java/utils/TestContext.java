@@ -5,7 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * Holds data shared across steps in a single scenario.
+ * TestContext, senaryo bazında adımlar arasında ortak verilerin (response, token, bookingId, vb.) paylaşılmasını sağlar.
  */
 public class TestContext {
 
@@ -16,7 +16,7 @@ public class TestContext {
     private int bookingId;
 
     public TestContext() {
-        logger.debug("TestContext created");
+        logger.debug("TestContext oluşturuldu.");
     }
 
     public Response getResponse() {
@@ -25,7 +25,7 @@ public class TestContext {
 
     public void setResponse(Response response) {
         this.response = response;
-        logger.debug("Response is set in TestContext. Status code: {}",
+        logger.debug("Response TestContext'e ayarlandı. StatusCode: {}",
                 response != null ? response.getStatusCode() : "null");
     }
 
@@ -35,7 +35,7 @@ public class TestContext {
 
     public void setToken(String token) {
         this.token = token;
-        logger.debug("Token set in context: {}", token);
+        logger.debug("Token TestContext'e ayarlandı: {}", token);
     }
 
     public int getBookingId() {
@@ -44,6 +44,6 @@ public class TestContext {
 
     public void setBookingId(int bookingId) {
         this.bookingId = bookingId;
-        logger.debug("BookingId set in context: {}", bookingId);
+        logger.debug("BookingId TestContext'e ayarlandı: {}", bookingId);
     }
 }

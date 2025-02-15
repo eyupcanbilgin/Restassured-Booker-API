@@ -5,7 +5,7 @@ import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
 
 /**
- * Cucumber runner with PicoContainer DI
+ * Cucumber runner with PicoContainer DI.
  */
 @RunWith(Cucumber.class)
 @CucumberOptions(
@@ -16,5 +16,4 @@ import org.junit.runner.RunWith;
         objectFactory = io.cucumber.picocontainer.PicoFactory.class
 )
 public class RunCucumberTest {
-        // Boş
 }

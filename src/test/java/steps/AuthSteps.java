@@ -18,7 +18,6 @@ import static org.hamcrest.Matchers.*;
 public class AuthSteps {
 
     private static final Logger logger = LogManager.getLogger(AuthSteps.class);
-
     private final TestContext context;
     private Map<String, String> credentials;
 
@@ -49,7 +48,7 @@ public class AuthSteps {
                     .response();
 
             context.setResponse(response);
-            logger.info("Response status code: {}", response.statusCode());
+            logger.info("Response status code: {}", response.getStatusCode());
         } catch (Exception e) {
             logger.error("Error while POST /auth", e);
             throw e;
@@ -57,17 +56,17 @@ public class AuthSteps {
     }
 
     @Then("response status code should be {int}")
-    public void response_status_code_should_be(int expected) {
-        int actual = context.getResponse().getStatusCode();
-        logger.info("Asserting status code: expected {}, actual {}", expected, actual);
-        assertThat(actual, is(expected));
+    public void response_status_code_should_be(int expectedStatusCode) {
+        int actualStatusCode = context.getResponse().getStatusCode();
+        logger.info("Asserting status code: expected {}, actual {}", expectedStatusCode, actualStatusCode);
+        assertThat(actualStatusCode, is(expectedStatusCode));
     }
 
     @Then("I save the token from response")
     public void i_save_the_token_from_response() {
         String token = context.getResponse().jsonPath().getString("token");
         logger.info("Token extracted: {}", token);
-        assertThat(token, not(emptyString()));
+        assertThat("Token should not be empty", token, not(emptyString()));
         context.setToken(token);
     }
 }
